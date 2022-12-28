@@ -1,12 +1,15 @@
 import Button from '@mui/material/Button';
+import { useQuery } from '@tanstack/react-query';
+import { findAll } from '../api';
 
 function Home() {
-  return (
-    <div>
-      <h1>Hello World</h1>
-      <Button variant="contained">Contained</Button>
-    </div>
-  );
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ['findAll'],
+    queryFn: findAll,
+  });
+
+  console.log(data);
+  return <>test</>;
 }
 
 export default Home;

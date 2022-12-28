@@ -6,9 +6,12 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import darkTheme from './theme';
 import NotFound from './pages/NotFound';
 import Home from './pages/Home';
+
+const queryClient = new QueryClient();
 
 export function App() {
   return (
@@ -36,8 +39,10 @@ export function WrappedApp() {
   return (
     <BrowserRouter>
       <ThemeProvider theme={darkTheme}>
-        <CssBaseline />
-        <App />
+        <QueryClientProvider client={queryClient}>
+          <CssBaseline />
+          <App />
+        </QueryClientProvider>
       </ThemeProvider>
     </BrowserRouter>
   );
