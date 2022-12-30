@@ -10,8 +10,16 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import darkTheme from './theme';
 import NotFound from './pages/NotFound';
 import Home from './pages/Home';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: false,
+    },
+  },
+});
 
 export function App() {
   return (
@@ -42,6 +50,7 @@ export function WrappedApp() {
         <QueryClientProvider client={queryClient}>
           <CssBaseline />
           <App />
+          <ReactQueryDevtools />
         </QueryClientProvider>
       </ThemeProvider>
     </BrowserRouter>
