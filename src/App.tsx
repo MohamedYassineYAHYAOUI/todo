@@ -7,10 +7,12 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import darkTheme from './theme';
-import NotFound from './pages/NotFound';
-import Home from './pages/Home';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import darkTheme from '@/theme';
+import NotFound from '@/pages/NotFound';
+import Home from '@/pages/Home';
+import TodoPage from '@/pages/TodoPage';
+import { Button } from '@mui/material';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -28,7 +30,7 @@ export function App() {
         <AppBar position="static">
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              React CRUD CLIENT
+              <Button>React CRUD CLIENT</Button>
             </Typography>
           </Toolbar>
         </AppBar>
@@ -36,6 +38,7 @@ export function App() {
       <Container maxWidth="lg">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/todo/:id" element={<TodoPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Container>
